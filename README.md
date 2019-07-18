@@ -1,13 +1,10 @@
-Slapper.AutoMapper
+Slapper.AutoMapper.Standard
 =================
 *Slap your data into submission.*
 
 Slapper.AutoMapper maps dynamic data to static types.
 
-<a href="https://www.nuget.org/packages/Slapper.AutoMapper"><img src="https://img.shields.io/nuget/v/Slapper.AutoMapper.svg" alt="NuGet Version" /></a> 
-<a href="https://www.nuget.org/packages/Slapper.AutoMapper"><img src="https://img.shields.io/nuget/dt/Slapper.AutoMapper.svg" alt="NuGet Download Count" /></a>
-
-###What is it?###
+## What is it?
 
 Slapper.AutoMapper ( Pronounced Slapper-Dot-Automapper ) is a mapping library that can convert dynamic data into 
 static types and populate complex nested child objects.
@@ -24,7 +21,7 @@ Answer: Yes and no but the philosophy of this project is much different. This sm
 building block in a larger solution and puts a great emphasis on its ability to map to complex nested properties such as mapping 
 a Customer and it's list of Orders and it's list of OrderDetails.
 
-###Is this an ORM?###
+## Is this an ORM? 
 
 No, this is not an ORM in itself but can easily be extended to create one. This library can be thought of as a building 
 block of an ORM or used as an extension to an existing ORM or Micro-ORM.
@@ -32,12 +29,12 @@ block of an ORM or used as an extension to an existing ORM or Micro-ORM.
 ORMs typically query the database and then map the data into objects. Slapper just handles the mapping part and essentially
 only has one input: a dictionary of property names and values.
 
-###What problems does this solve?###
+## What problems does this solve? 
 
 Simply put, it allows you to convert dynamic data into strongly typed objects with ease and populating complex nested child 
 objects in your object hierarchy comes free out of the box --something severely lacking in almost every Micro-ORM solution!
 
-###Auto mapping?###
+## Auto mapping? 
 
 Yep, Slapper.AutoMapper stays true to its name and allows auto-mapping between dynamic data and static types by using
 conventions to find a given classes identifier ( the property that gives the class uniqueness ). This allows Slapper to 
@@ -47,7 +44,7 @@ an attribute.
 
 And yes, multiple identifiers aka Composite Primary Keys are supported out of the box!
 
-###Some more ramblings...###
+## Some more ramblings...
 
 Micro-ORMs have been springing up left and right but many of them are quite basic in their functionality. Many have also 
 been opting for either very basic mapping to strongly typed objects or skipping it completely and opting for a completely 
@@ -56,7 +53,7 @@ dynamic solution.
 Dynamics are super cool and have their place but strongly typed objects have their place too and that is what this library 
 focuses on... converting dynamic data into strongly typed objects with strong support for populating nested child properties. 
 
-###Target Audience###
+## Target Audience
 
 The target audience is C# developers looking to enhance an ORM or write their own. Slapper.AutoMapper
 can take care of a lot of the hard work of mapping back to strongly typed objects.
@@ -78,7 +75,7 @@ Now let the slapping commence! :)
 Usage - Mapping
 ===============
 
-###Simple Example Using a Dictionary###
+## Simple Example Using a Dictionary 
 
 The following simple example maps a dictionary of property names and values to a Person class.
 
@@ -112,7 +109,7 @@ public void Can_Map_Matching_Field_Names_With_Ease()
 }
 ```
 
-###Simple Example Using Dynamic###
+## Simple Example Using Dynamic
 
 The following simple example maps a dynamic object to a Person class.
 
@@ -146,7 +143,7 @@ public void Can_Map_Matching_Field_Names_Using_Dynamic()
 }
 ```
 
-###Mapping Nested Types Using a Dictionary###
+## Mapping Nested Types Using a Dictionary
 
 The following example maps a list of dictionaries of property names and values to a Customer class and using underscore notation ("_"), 
 Slapper.AutoMapper properly populates the nested child types. This is really what I would consider this libraries secret sauce.
@@ -288,7 +285,7 @@ public void I_Can_Map_Nested_Types_And_Resolve_Duplicate_Entries_Properly_Using_
 Usage - Auto Mapping and Identifiers
 ====================================
 
-###Auto Mapping###
+## Auto Mapping
 
 Auto mapping allows Slapper to figure out how to effectively group objects together so that you do not get 
 duplicate results. Now internally, no actual grouping is happening but this is the easiest way to conceptualize
@@ -301,7 +298,7 @@ A classes identifier(s) play an important role in the ability of the mapper to e
 identifiers are found, the mapper will still map the results to the requested type but there will be duplicates in the results.
 
 
-####Default Convention####
+## Default Convention
 Slapper.AutoMapper uses three different conventions in an attempt to locate/match a requested types
 identifier:
 - Id
@@ -313,7 +310,7 @@ For example, if your Customer object has any of the following properties or fiel
 - CustomerId
 - CustomerNbr
 
-####Creating Your Own Convention####
+## Creating Your Own Convention# #
 
 You can specify your own conventions very easily. The following example creates a convention of TypeName + _Id:
 
@@ -321,7 +318,7 @@ You can specify your own conventions very easily. The following example creates 
 Slapper.AutoMapper.Configuration.IdentifierConventions.Add( type => type.Name + "_Id" );
 ````
 
-####Manually Specifying the Identifier(s)####
+## Manually Specifying the Identifier(s)
 
 Slapper allows you to manually specify a classes identifiers. 1 through N number of identifiers are supported.
 
@@ -343,7 +340,7 @@ public class Customer
 Slapper.AutoMapper.Configuration.AddIdentifiers( typeof( Customer ), new List<string> { "CustomerId", "CustomerType" } );
 ````
 
-####Attribute-based Identifiers####
+## Attribute-based Identifiers
 
 Slapper.AutoMapper also supports attribute-based identifiers.
 
@@ -376,7 +373,7 @@ public class Customer
 Usage - Caching
 ===============
 
-####Caching Explained####
+## Caching Explained
 
 Slapper.AutoMapper internally maintains a cache of every object it creates, referred to as the instance cache.
 This cache plays an important role in Slapper's ability to easily lookup existing objects and ultimately assists
@@ -388,13 +385,13 @@ then there are going to be 50,000 objects in the cache for the lifetime of the c
 The instance cache exists for the lifetime of the current thread and each of your application's threads will
 get it's own unique cache making use of this library thread safe.
 
-####Cache Backing Store####
+## Cache Backing Store
 
 The instance cache backing store will either make use of the HttpContext if one exists or the CallContext of the
 executing thread. The library makes use of reflection in order to persist the cache in the HttpContext when
 neccessary so that the library does not require a dependency on the System.Web library.
 
-####Clearing the Cache###
+## Clearing the Cache
 
 Slapper never clears the cache because we feel that it should be the consumer of this library that should have that 
 responsibility.
@@ -404,35 +401,3 @@ If you would like to clear this cache, you can do so at any time like so:
 ```csharp
 Slapper.AutoMapper.Cache.ClearInstanceCache();
 ````
-
-
-###License###
-
-MIT License:
-
-Copyright (c) 2016, Randy Burden and contributors.
-All rights reserved.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
-associated documentation files (the "Software"), to deal in the Software without restriction, including 
-without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the 
-following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial 
-portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
-LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN 
-NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
-
-Description:
-
-Slapper.AutoMapper maps dynamic data to static types. Slap your data into submission!
-
-Slapper.AutoMapper ( Pronounced Slapper-Dot-Automapper ) is a mapping library that can convert 
-dynamic data into static types and populate complex nested child objects.
-It primarily converts C# dynamics and IDictionary<string, object> to strongly typed objects and supports
-populating an entire object graph by using underscore notation to underscore into nested objects.

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slapper", "Slapper.AutoMapper\Slapper.csproj", "{A3A6ABBF-8C42-4945-BB8B-804123E45B2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slapper.AutoMapper", "Slapper.AutoMapper\Slapper.AutoMapper.csproj", "{A3A6ABBF-8C42-4945-BB8B-804123E45B2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slapper.Tests", "Slapper.AutoMapper.Tests\Slapper.Tests.csproj", "{DB57364B-6EE2-46C0-837E-B43F53CEEFA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slapper.Tests", "Slapper.AutoMapper.Tests\Slapper.Tests.csproj", "{DB57364B-6EE2-46C0-837E-B43F53CEEFA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
